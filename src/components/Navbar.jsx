@@ -8,16 +8,13 @@ const Navbar = () => {
   const [active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
 
-  const toggleResume = () => {
-    const resumeUrl = '/Resume.pdf';
-    window.open(resumeUrl);
-  };
-
   useEffect(() => {
     if (toggle) {
       setActive('');
     }
   }, [toggle]);
+
+  const resumeUrl = `${import.meta.env.BASE_URL}Resume.pdf`;
 
   const renderNavLinks = (isSecondary) => (
     <ul className={`list-none ${isSecondary ? 'flex sm:hidden' : 'hidden sm:flex'} flex-row gap-6`}>
@@ -42,7 +39,9 @@ const Navbar = () => {
           isSecondary ? 'secondary' : 'white'
         } hover:text-white text-[20px] font-medium cursor-pointer`}
       >
-        <button onClick={toggleResume}>Resume</button>
+        <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+          Resume
+        </a>
       </li>
     </ul>
   );
